@@ -259,6 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-/IssueTracker.Data/appsettings.development.json
-/IssueTracker.Data/appsettings.development.json
-/IssueTracker.Portal/appsettings.development.json
+/src/IssueTracker.Data/appsettings.development.json
+/src/IssueTracker.Data/appsettings.development.json
+/src/IssueTracker.Portal/appsettings.development.json
