@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IssueTracker.Portal.Data;
 using IssueTracker.Portal.Models;
 using IssueTracker.Portal.Services;
+using IssueTracker.Core;
+using IssueTracker.Data;
 
 namespace IssueTracker.Portal
 {
@@ -40,11 +41,11 @@ namespace IssueTracker.Portal
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<EFDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<EFDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
