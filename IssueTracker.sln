@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IssueTracker.Data", "IssueT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IssueTracker.Framework", "IssueTracker.Framework\IssueTracker.Framework.csproj", "{EBCD1557-E394-4C4F-B41C-10391DE7265E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IssueTracker.Portal", "IssueTracker.Portal\IssueTracker.Portal.csproj", "{E719E956-1298-496E-B26A-E5B3CE0025B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IssueTracker.Portal", "IssueTracker.Portal\IssueTracker.Portal.csproj", "{E719E956-1298-496E-B26A-E5B3CE0025B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E434CBE-8F4E-482C-8B60-653776895BFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B7A2167-7123-4694-9B35-C70E9AB59AFB} = {9E434CBE-8F4E-482C-8B60-653776895BFA}
+		{44139697-3D19-46DC-BCC6-10013D238431} = {9E434CBE-8F4E-482C-8B60-653776895BFA}
+		{EBCD1557-E394-4C4F-B41C-10391DE7265E} = {9E434CBE-8F4E-482C-8B60-653776895BFA}
+		{E719E956-1298-496E-B26A-E5B3CE0025B4} = {9E434CBE-8F4E-482C-8B60-653776895BFA}
 	EndGlobalSection
 EndGlobal
