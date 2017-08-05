@@ -1,4 +1,5 @@
 ﻿using IssueTracker.Core.Data;
+using IssueTracker.Core.Data.Repositories;
 using IssueTracker.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,8 @@ namespace IssueTracker.Data
             RepositoryProvider = repositoryProvider;
             repositoryProvider.Context = context;
         }
+
+        public ICompanyRepository Companies { get { return GetRepo<ICompanyRepository>(); } }
 
         private DbContext DbContext { get; set; }
         protected IRepositoryProvider RepositoryProvider { get; set; }

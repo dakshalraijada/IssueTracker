@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using IssueTracker.Core;
 
 namespace IssueTracker.Portal.Controllers
 {
     public class HomeController : Controller
     {
+        private Company _company;
+        public HomeController(Company company)
+        {
+            _company = company;
+        }
+
         public IActionResult Index()
         {
             return View();

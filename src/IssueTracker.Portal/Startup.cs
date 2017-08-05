@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using IssueTracker.Portal.Models;
 using IssueTracker.Portal.Services;
 using IssueTracker.Core;
 using IssueTracker.Data;
 using IssueTracker.Data.Helpers;
 using IssueTracker.Core.Data;
+using IssueTracker.Portal.Resolver;
 
 namespace IssueTracker.Portal
 {
@@ -58,6 +53,8 @@ namespace IssueTracker.Portal
                 return new IssueTrackerUow(factory.GetRequiredService<IRepositoryProvider>(), factory.GetRequiredService<EFDbContext>());
             });
 
+            services.AddMultitenancy<Company, CompanyDomainResolver>();
+
             services.AddMvc();
             services.AddRouting(x => x.LowercaseUrls = true);
             // Add application services.
@@ -87,7 +84,7 @@ namespace IssueTracker.Portal
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
+            app.UseMultitenancy<Company>();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

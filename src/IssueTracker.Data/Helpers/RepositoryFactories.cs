@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IssueTracker.Core.Data.Repositories;
+using IssueTracker.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +12,7 @@ namespace IssueTracker.Data.Helpers
         {
             return new Dictionary<Type, Func<DbContext, object>>
             {
-                //{typeof(IGroundRepository), connectionString => new GroundRepository(connectionString)},
+                {typeof(ICompanyRepository), dbContext => new CompanyRepository(dbContext)},
             };
         }
 

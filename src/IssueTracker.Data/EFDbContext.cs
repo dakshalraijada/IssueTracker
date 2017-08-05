@@ -15,5 +15,7 @@ namespace IssueTracker.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Company> Companies { get; set; }
     }
 }
