@@ -13,6 +13,8 @@ using IssueTracker.Portal.Models;
 using IssueTracker.Portal.Services;
 using IssueTracker.Core;
 using IssueTracker.Data;
+using IssueTracker.Data.Helpers;
+using IssueTracker.Core.Data;
 
 namespace IssueTracker.Portal
 {
@@ -45,11 +47,19 @@ namespace IssueTracker.Portal
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<EFDbContext>()
+                .AddEntityFrameworkStores<EFDbContext, int>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddSingleton<IConfiguration>(Configuration);
 
+            services.AddSingleton<RepositoryFactories>();
+            services.AddScoped<IRepositoryProvider, RepositoryProvider>();
+            services.AddScoped<IUow, IssueTrackerUow>((factory) => {
+                return new IssueTrackerUow(factory.GetRequiredService<IRepositoryProvider>(), factory.GetRequiredService<EFDbContext>());
+            });
+
+            services.AddMvc();
+            services.AddRouting(x => x.LowercaseUrls = true);
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
