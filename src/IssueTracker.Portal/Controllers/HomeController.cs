@@ -9,14 +9,13 @@ namespace IssueTracker.Portal.Controllers
 {
     public class HomeController : Controller
     {
-        private Company _company;
-        public HomeController(Company company)
-        {
-            _company = company;
+       
+        public HomeController() {
+            
         }
 
         public IActionResult Index()
-        {
+        {            
             return View();
         }
 

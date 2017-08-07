@@ -2,9 +2,6 @@
 using IssueTracker.Core.Data;
 using Microsoft.AspNetCore.Http;
 using SaasKit.Multitenancy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace IssueTracker.Portal.Resolver
@@ -12,6 +9,7 @@ namespace IssueTracker.Portal.Resolver
     public class CompanyDomainResolver : ITenantResolver<Company>
     {
         protected readonly IUow Uow;
+
         public CompanyDomainResolver(IUow uow)
         {
             Uow = uow;
@@ -28,8 +26,16 @@ namespace IssueTracker.Portal.Resolver
                 var company = Uow.Companies.GetBySubDomain(subdomain);
                 if (company != null)
                 {
+                    //company found
                     tenantContext = new TenantContext<Company>(company);
                 }
+
+                if (context.Request.Host.Value != "localhost:58090" && subdomain != "www" && context.Request.Path.Value != "/error/404")
+                {
+                    context.Response.StatusCode = 404;                    
+                    return null;
+                    //context.Response.Redirect("/error/404");
+                }               
             }
 
             return tenantContext;

@@ -5,21 +5,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IssueTracker.Core
 {
-    public class Company
+    public class IssueStatus
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(250)]
-        public string SubDomain { get; set; }
-        [Required]
-        [MaxLength(250)]
         public string Name { get; set; }
+        public int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual ICollection<Issue> Issues { get; set; }
         [DefaultValue("GETDATE()")]
         public DateTime CreatedDate {
             get { return CreatedDate == default(DateTime) ? DateTime.Now : CreatedDate; }
             set { CreatedDate = value; }
         }
-        public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<CompanyUser> Users { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using IssueTracker.Data;
 using IssueTracker.Data.Helpers;
 using IssueTracker.Core.Data;
 using IssueTracker.Portal.Resolver;
+using System.Threading.Tasks;
 
 namespace IssueTracker.Portal
 {
@@ -78,19 +79,23 @@ namespace IssueTracker.Portal
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
 
-            app.UseStaticFiles();
-
+            app.UseMultitenancy<Company>();
+            
+            app.UseStaticFiles();       
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-            app.UseMultitenancy<Company>();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

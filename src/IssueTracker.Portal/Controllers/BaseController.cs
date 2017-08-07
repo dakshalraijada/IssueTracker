@@ -1,4 +1,5 @@
-﻿using IssueTracker.Core.Data;
+﻿using IssueTracker.Core;
+using IssueTracker.Core.Data;
 using IssueTracker.Core.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,9 +10,12 @@ namespace IssueTracker.Portal.Controllers
     public class BaseController : Controller
     {
         protected readonly IUow Uow;
-        public BaseController(IUow uow)
+        protected readonly Company Company;
+
+        public BaseController(IUow uow, Company company)
         {
             Uow = uow;
+            Company = company;
         }
 
         [Obsolete("Do not use the standard Json helpers to return JSON data to the client.  Use either JsonSuccess or JsonError instead.")]
