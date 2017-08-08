@@ -37,5 +37,8 @@
   <ItemGroup>
     <ProjectReference Include="..\IssueTracker.Framework\IssueTracker.Framework.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Company\" />
+  </ItemGroup>
 
 </Project>

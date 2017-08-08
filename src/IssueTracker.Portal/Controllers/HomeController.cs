@@ -1,28 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using IssueTracker.Core;
+using IssueTracker.Core.Data;
+using SaasKit.Multitenancy;
 
 namespace IssueTracker.Portal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
        
-        public HomeController() {
+        public HomeController(IUow uow, ITenant<Company> company) : base(uow, company){
             
         }
 
         public IActionResult Index()
-        {            
+        {
+            if (HttpContext.Response.StatusCode == 404)
+            {
+                return View("~/Views/Error/Error.cshtml", 404);
+            }
+
+            if (Company != null)
+            {
+                return View("~/Views/Company/Index.cshtml", Company);
+            }
+
             return View();
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

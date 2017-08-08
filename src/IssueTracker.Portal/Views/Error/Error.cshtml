@@ -3,10 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model int
 
-@{
-    switch (Model)
+
+@{  
+
+    switch (this.Context.Response.StatusCode)
     {
         case 400:
             ViewData["Icon"] = "fa fa-ban text-danger";

@@ -10,7 +10,6 @@ using IssueTracker.Data;
 using IssueTracker.Data.Helpers;
 using IssueTracker.Core.Data;
 using IssueTracker.Portal.Resolver;
-using System.Threading.Tasks;
 
 namespace IssueTracker.Portal
 {
@@ -79,7 +78,7 @@ namespace IssueTracker.Portal
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseStatusCodePagesWithReExecute("/error/{0}");
+            app.UseStatusCodePagesWithReExecute("/error");
 
             app.UseMultitenancy<Company>();
             

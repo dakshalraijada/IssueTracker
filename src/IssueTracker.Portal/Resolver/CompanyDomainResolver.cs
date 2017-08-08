@@ -33,8 +33,6 @@ namespace IssueTracker.Portal.Resolver
                 if (context.Request.Host.Value != "localhost:58090" && subdomain != "www" && context.Request.Path.Value != "/error/404")
                 {
                     context.Response.StatusCode = 404;                    
-                    return null;
-                    //context.Response.Redirect("/error/404");
                 }               
             }
 

@@ -5,10 +5,10 @@ namespace IssueTracker.Portal.Controllers
 {
     public class ErrorController : Controller
     {
-        [Route("error/{id}")]
-        public IActionResult Error(int id)
+        [Route("error")]
+        public IActionResult Error()
         {
-            if (id == 404)
+            if (this.Response.StatusCode == 404)
             {
                 var statusFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
                 if (statusFeature != null)
@@ -16,7 +16,8 @@ namespace IssueTracker.Portal.Controllers
                     //log.LogWarning("handled 404 for url: {OriginalPath}", statusFeature.OriginalPath);
                 }
             }
-            return View(id);
+           
+            return View();
         }
     }
 }
